@@ -33,7 +33,7 @@ def get_message():
 def send_message(msg):
     nav_to_image('images/paperclip.png', 2, off_x=100)
     pt.typewrite(msg, interval=.1)
-    # pt.typewrite('\n')
+    pt.typewrite('\n')
 
 
 def close_reply_box():
@@ -51,6 +51,34 @@ def process_message(msg):
         return 'You wrote ok!'
     else:
         return 'I did not understand what you wrote.'
+
+
+# Loop the code
+delay = 10
+last_message = ''
+
+sleep(3)
+while True:
+    # Checks for new messages
+    nav_to_image('images/green_circle.png', 2, off_x=-100)  # 1
+    close_reply_box()  # 2
+
+    message = get_message()  # 3
+    if message != 0 and message != last_message:
+        last_message = message
+        send_message(process_message(message))
+    else:
+        print('No new messages...')
+
+    sleep(10)
+
+
+
+
+
+
+
+
 
 
 
